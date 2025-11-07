@@ -1,3 +1,15 @@
+@keyframes fade {
+	0% {
+		opacity: 0;
+		transform: scale(0.6);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
 body {
   background-color: #212121;
 }
@@ -9,7 +21,8 @@ a,
 
 .bg-card {
   background-color: #303030;
-  transition: 100ms ease-in-out;
+  animation: fade 200ms ease-in;
+  transition: 200ms ease-in-out;
   &:hover {
     transform: scale(0.97);
   }
