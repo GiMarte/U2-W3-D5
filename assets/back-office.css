@@ -1,5 +1,8 @@
 body {
   background-color: #212121;
+  overflow: hidden;
+  height: 100vh;
+  position: relative;
 }
 h1,
 a,
@@ -57,18 +60,17 @@ input {
 input:focus {
   border-radius: 10px;
 }
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.modal-header {
+  background-color: #212121;
+  color: white;
+  border: none;
 }
-
-body {
-  background-color: #111;
-  overflow: hidden;
-  height: 100vh;
-  position: relative;
+.modal-content {
+  background-color: #212121;
+  color: white;
+}
+.modal-footer {
+  border: none;
 }
 
 .lines {
