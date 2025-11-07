@@ -99,7 +99,6 @@ form.addEventListener("submit", (e) => {
   const price = document.getElementById("price").value;
   if (params) {
     updateData(name, description, brand, imageUrl, price);
-
     window.location.href = "./home.html";
   } else {
     sendData(name, description, brand, imageUrl, price);
@@ -169,12 +168,25 @@ const deleteItem = function () {
   })
     .then((res) => {
       if (!res.ok) throw new Error(res.status);
-      console.log(`prodotto con id: ${params} eliminato`);
       setTimeout(() => {
         window.location.href = "./home.html";
       }, 1000);
     })
     .catch((err) => {
-      console.log("errrore nel cancellare l'item", err);
+      console.log("errore nel cancellare l'item", err);
     });
 };
+
+const confirmModal = new bootstrap.Modal(
+  document.getElementById("confirmModal")
+);
+const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+
+function openDeleteModal() {
+  confirmModal.show();
+}
+
+confirmDeleteBtn.addEventListener("click", () => {
+  confirmModal.hide();
+  deleteItem();
+});

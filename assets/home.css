@@ -21,3 +21,7 @@ a:hover {
   border-radius: 300px;
   transition: 400ms ease-in-out;
 }
+
+button {
+  background-color: transparent !important;
+}
