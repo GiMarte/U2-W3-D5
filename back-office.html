@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post your Video card</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous" />
+  </head>
+  <body>
+    <header>
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="./home.html">
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" active href="./back-office.html">Back-Office</a>
+        </li>
+      </ul>
+    </header>
+    <div class="container">
+      <div class="row justify-content-center align-items-center min-vh-100">
+        <div class="col col-12 col-md-8 cold-xl-3 text-center">
+          <form id="back-form" class="bg-secondary rounded-3 p-3">
+            <div class="d-flex flex-column align-items-center">
+              <label for="name" class="fs-4">Name of product</label>
+              <input type="text" class="py-1 w-50 mt-3" id="name" required />
+              <label for="description" class="fs-4">Description here</label>
+              <input
+                type="text"
+                class="py-1 w-50 mt-3"
+                id="description"
+                required />
+              <label for="brand" class="fs-4">Brand name</label>
+              <input type="text" class="py-1 w-50 mt-3" id="brand" required />
+              <label for="img-url" class="fs-4">
+                An image of the item (URL)
+              </label>
+              <input type="text" class="py-1 w-50 mt-3" id="img-url" required />
+              <label for="price" class="fs-4">Price here</label>
+              <input type="text" class="py-1 w-50 mt-3" id="price" required />
+            </div>
+            <button class="mt-5">Post Videocard</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"></script>
+    <script src="./script/back-office.js"></script>
+  </body>
+</html>

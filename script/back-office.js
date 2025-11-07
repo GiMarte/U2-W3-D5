@@ -10,7 +10,13 @@ Questo è l’endpoint principale:
 https://striveschool-api.herokuapp.com/api/product/1plain
 
 Questo è il modello di un prodotto:
-
+{
+"name" : "Nokia 3310",
+"description" : "bla bla"
+"brand" : "nokia",
+"imageUrl" : "hhtps bla bla"
+"price" : "33"
+}
  Select an Image
 
 Per creare nuovi prodotti dovrai partire da questo modello come riferimento, e formarlo con alcune delle proprietà richieste per poi inviarlo come payload della chiamata POST.
@@ -49,3 +55,42 @@ Manca un campo obbligatorioHai una “duplicate key”, che significa che qualco
 
 Imparare a leggere gli errori è molto importante, sono i tuoi migliori amici!
 */
+const url = "https://striveschool-api.herokuapp.com/api/product/";
+const token =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTBkYThlNmY0YmQ0NzAwMTU4NWIxZDAiLCJpYXQiOjE3NjI1MDMwMDYsImV4cCI6MTc2MzcxMjYwNn0._urbjVpONmkAg8CYAV64r1bWQe5spsCY_e5f1YpI1ik";
+
+const form = document.getElementById("back-form");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = document.getElementById("name").value;
+  const description = document.getElementById("description").value;
+  const brand = document.getElementById("brand").value;
+  const imageUrl = document.getElementById("img-url").value;
+  const price = document.getElementById("price").value;
+  sendData(name, description, brand, imageUrl, price);
+  form.reset();
+});
+
+const sendData = function (name, description, brand, imageUrl, price) {
+  fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: token,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: name,
+      description: description,
+      brand: brand,
+      imageUrl: imageUrl,
+      price: price,
+    }),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error(res.status);
+       return console.log(res)
+    })
+    .catch((err) => {
+      "male male, errore:", err;
+    });
+};
