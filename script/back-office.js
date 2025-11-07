@@ -33,13 +33,18 @@ Avere una pagina back-office, in cui si potranno inserire i prodotti specificand
 
 Tasks:
 
-In Backoffice: usa una POST su /product con un payload per creare una nuova risorsa.In Backoffice: aggiungi un bottone per la funzionalità di modifica di un prodotto già creato in precedenza (usa una PUT su /product/[PRODUCT_ID]).In Backoffice: aggiungi un bottone per la cancellazione di uno specifico prodotto già esistente (usa DELETE su /product/[PRODUCT_ID])In Backoffice: aggiungi una validazione di base per la creazione/modifica del prodotto nel form (non permettere l'invio dei dati con campi vuoti)In Backoffice: aggiungi un bottone “Reset” per resettare il form.In Homepage:
-premendo un bottone “modifica” su un prodotto si dovrà poterlo modificare.Pagina Dettaglio:
+In Backoffice: usa una POST su /product con un payload per creare una nuova risorsa.
+In Backoffice: aggiungi un bottone per la funzionalità di modifica di un prodotto già creato in precedenza (usa una PUT su /product/[PRODUCT_ID]).
+In Backoffice: aggiungi un bottone per la cancellazione di uno specifico prodotto già esistente (usa DELETE su /product/[PRODUCT_ID])In Backoffice: aggiungi una validazione di base per la creazione/modifica del prodotto nel form (non permettere l'invio dei dati con campi vuoti)
+In Backoffice: aggiungi un bottone “Reset” per resettare il form.In Homepage: premendo un bottone “modifica” su un prodotto si dovrà poterlo modificare.
+Pagina Dettaglio:
 A questa pagina ci si arriverà cliccando sulla card in homepage.
 
 EXTRA:
 
-In Backoffice: I bottoni “reset” e “delete” dovranno chiedere conferma prima di procedere con l’operazione.In Homepage: aggiungi un indicatore di caricamento affianco al titolo principale della pagina durante il caricamento delle risorse.Crea un sistema di gestione degli errori. Mostra all’utente un messaggio di errore specifico per le varie tipologie di problema, quando qualcosa va storto, attraverso l’utilizzo di componenti di Bootstrap appropriati.
+In Backoffice: I bottoni “reset” e “delete” dovranno chiedere conferma prima di procedere con l’operazione.
+In Homepage: aggiungi un indicatore di caricamento affianco al titolo principale della pagina durante il caricamento delle risorse.Crea un sistema di gestione degli errori. 
+Mostra all’utente un messaggio di errore specifico per le varie tipologie di problema, quando qualcosa va storto, attraverso l’utilizzo di componenti di Bootstrap appropriati.
 
 FAQ:
 
@@ -63,8 +68,7 @@ const params = new URLSearchParams(window.location.search).get("id");
 if (params) {
   fetch(`${url}/${params}`, {
     headers: {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTBkYThlNmY0YmQ0NzAwMTU4NWIxZDAiLCJpYXQiOjE3NjI1MDMwMDYsImV4cCI6MTc2MzcxMjYwNn0._urbjVpONmkAg8CYAV64r1bWQe5spsCY_e5f1YpI1ik",
+      Authorization: token,
     },
   })
     .then((res) => {
@@ -95,6 +99,8 @@ form.addEventListener("submit", (e) => {
   const price = document.getElementById("price").value;
   if (params) {
     updateData(name, description, brand, imageUrl, price);
+
+    window.location.href = "./home.html";
   } else {
     sendData(name, description, brand, imageUrl, price);
   }
@@ -154,6 +160,21 @@ const resetForm = function () {
   form.reset();
 };
 
-const deleteItem = function ( ) {
-    
-}
+const deleteItem = function () {
+  fetch(`${url}/${params}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error(res.status);
+      console.log(`prodotto con id: ${params} eliminato`);
+      setTimeout(() => {
+        window.location.href = "./home.html";
+      }, 1000);
+    })
+    .catch((err) => {
+      console.log("errrore nel cancellare l'item", err);
+    });
+};
