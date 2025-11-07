@@ -21,20 +21,23 @@ const getData = function () {
         card.setAttribute("class", "col col-12 col-md-6 col-xl-3 text-center");
         card.innerHTML = `
                     <div class="card h-100">
-                    <img src="${vc.imageUrl}" class="card-img-top" alt="tech-img">
-                    <div class="card-body">
-                        <h5 class="card-title">${vc.brand} ${vc.name}</h5>
-                        <p class="card-text">${vc.description}</p>
-                        <p class="card-text">${vc.price}$</p>
-                        <a href="./back-office?${vc._id}.html" class="btn btn-warning">Edit</a>
-                    </div>
+                        <img src="${vc.imageUrl}" class="card-img-top h-50" alt="tech-img">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">${vc.brand} ${vc.name}</h5>
+                            <p class="card-text flex-grow-1">${vc.description}</p>
+                            <p class="card-text">${vc.price}$</p>
+                            <div>
+                                <a href="./back-office.html?id=${vc._id}" class="btn btn-warning">Edit</a>
+                                <button class="btn btn-primary">Buy</button>
+                            </div>  
+                        </div>
                     </div>
          `;
         container.appendChild(card);
       });
     })
     .catch((err) => {
-      "siamo nell catch", err;
+      console.log("siamo nell catch", err);
     });
 };
 

@@ -55,19 +55,50 @@ Manca un campo obbligatorioHai una “duplicate key”, che significa che qualco
 
 Imparare a leggere gli errori è molto importante, sono i tuoi migliori amici!
 */
-const url = "https://striveschool-api.herokuapp.com/api/product/";
+const url = "https://striveschool-api.herokuapp.com/api/product";
 const token =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTBkYThlNmY0YmQ0NzAwMTU4NWIxZDAiLCJpYXQiOjE3NjI1MDMwMDYsImV4cCI6MTc2MzcxMjYwNn0._urbjVpONmkAg8CYAV64r1bWQe5spsCY_e5f1YpI1ik";
+const params = new URLSearchParams(window.location.search).get("id");
+
+if (params) {
+  fetch(`${url}/${params}`, {
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTBkYThlNmY0YmQ0NzAwMTU4NWIxZDAiLCJpYXQiOjE3NjI1MDMwMDYsImV4cCI6MTc2MzcxMjYwNn0._urbjVpONmkAg8CYAV64r1bWQe5spsCY_e5f1YpI1ik",
+    },
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error(res.status);
+      return res.json();
+    })
+    .then((arr) => {
+      console.log(arr);
+      document.getElementById("name").value = arr.name;
+      document.getElementById("description").value = arr.description;
+      document.getElementById("brand").value = arr.brand;
+      document.getElementById("img-url").value = arr.imageUrl;
+      document.getElementById("price").value = arr.price;
+    })
+    .catch((err) => {
+      console.log("siamo nell catch", err);
+    });
+}
 
 const form = document.getElementById("back-form");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+
   const name = document.getElementById("name").value;
   const description = document.getElementById("description").value;
   const brand = document.getElementById("brand").value;
   const imageUrl = document.getElementById("img-url").value;
   const price = document.getElementById("price").value;
-  sendData(name, description, brand, imageUrl, price);
+  if (params) {
+    updateData(name, description, brand, imageUrl, price);
+  } else {
+    sendData(name, description, brand, imageUrl, price);
+  }
+
   form.reset();
 });
 
@@ -88,9 +119,41 @@ const sendData = function (name, description, brand, imageUrl, price) {
   })
     .then((res) => {
       if (!res.ok) throw new Error(res.status);
-       return console.log(res)
+      return console.log(res);
     })
     .catch((err) => {
       "male male, errore:", err;
     });
 };
+
+const updateData = function (name, description, brand, imageUrl, price) {
+  fetch(`${url}/${params}`, {
+    method: "PUT",
+    headers: {
+      Authorization: token,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: name,
+      description: description,
+      brand: brand,
+      imageUrl: imageUrl,
+      price: price,
+    }),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error(res.status);
+      return res.json();
+    })
+    .catch((err) => {
+      console.log("non sono riuscito a uploadare:", err);
+    });
+};
+
+const resetForm = function () {
+  form.reset();
+};
+
+const deleteItem = function ( ) {
+    
+}

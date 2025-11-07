@@ -45,7 +45,21 @@
               <label for="price" class="fs-4">Price here</label>
               <input type="text" class="py-1 w-50 mt-3" id="price" required />
             </div>
-            <button class="mt-5">Post Videocard</button>
+            <div class="d-flex justify-content-center mt-4 p-4">
+              <button class="btn btn-success me-2">Post Item</button>
+              <button
+                type="button"
+                class="btn btn-warning me-2"
+                onclick="resetForm()">
+                Clean Fields
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger text-right"
+                onclick="deleteItem()">
+                DELETE ITEM
+              </button>
+            </div>
           </form>
         </div>
       </div>
