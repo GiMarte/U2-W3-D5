@@ -8,6 +8,9 @@ p,
   color: white;
 }
 
+header {
+  background-color: #2f2f2f;
+}
 .bg-card {
   background-color: #303030;
   transition: 100ms ease-in-out;

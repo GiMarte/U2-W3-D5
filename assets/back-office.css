@@ -8,6 +8,9 @@ label,
 .nav-link {
   color: white;
 }
+header {
+  background-color: #2f2f2f;
+}
 
 .bg-card {
   background-color: #303030;
