@@ -22,7 +22,7 @@ const getData = function () {
           "col col-12 col-md-6 col-xl-3 text-center g-3"
         );
         card.innerHTML = `
-                  <div class="card h-100">
+                  <div class="card h-100 bg-card">
                          <img src="${pr.imageUrl}" class="card-img-top h-50" alt="tech-img">
                         <div class="card-body d-flex flex-column">
                             <a href="./details.html?id=${pr._id}" class="flex-grow-1 text-decoration-none">

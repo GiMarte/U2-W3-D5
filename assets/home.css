@@ -1,0 +1,23 @@
+body {
+  background-color: #212121;
+}
+h1,
+a,
+.nav-link {
+  color: white;
+}
+
+.bg-card {
+  background-color: #303030;
+  transition: 100ms ease-in-out;
+  &:hover {
+    transform: scale(0.97);
+  }
+}
+
+a:hover {
+  background-color: #3030308e;
+  color: rgb(160, 160, 160) !important;
+  border-radius: 300px;
+  transition: 400ms ease-in-out;
+}

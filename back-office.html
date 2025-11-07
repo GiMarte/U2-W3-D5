@@ -9,6 +9,7 @@
       rel="stylesheet"
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous" />
+    <link rel="stylesheet" href="./assets/back-office.css" />
   </head>
   <body>
     <header>
@@ -24,9 +25,9 @@
       </ul>
     </header>
     <div class="container">
-      <div class="row justify-content-center  min-vh-100">
+      <div class="row justify-content-center min-vh-100">
         <div class="col col-12 col-md-8 cold-xl-3 text-center">
-          <form id="back-form" class="bg-secondary rounded-3 p-3">
+          <form id="back-form" class="rounded-3 p-3">
             <div class="d-flex flex-column align-items-center">
               <label for="name" class="fs-4">Name of product</label>
               <input type="text" class="py-1 w-50 mt-3" id="name" required />
@@ -46,14 +47,16 @@
               <input type="text" class="py-1 w-50 mt-3" id="price" required />
             </div>
             <div class="d-flex justify-content-center mt-4 p-4">
-              <button class="btn btn-success me-2">Post Item</button>
+              <button id="post" class="btn btn-success me-2">Post Item</button>
               <button
+                id="clean"
                 type="button"
                 class="btn btn-warning me-2"
                 onclick="resetForm()">
                 Clean Fields
               </button>
               <button
+                id="delete"
                 type="button"
                 class="btn btn-danger text-right"
                 onclick="deleteItem()">
